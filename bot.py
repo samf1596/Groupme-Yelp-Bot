@@ -19,6 +19,7 @@ def send_message(msg):
 
 @app.route('/', methods=['POST'])
 def hook():
+    data = request.get_json()
       # We don't want to reply to ourselves!
     if data['name'] != 'Yelp':
         msg = '{}, you sent "{}".'.format(data['name'], data['text'])

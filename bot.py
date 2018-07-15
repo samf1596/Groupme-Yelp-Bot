@@ -14,7 +14,7 @@ def send_message(msg):
           'bot_id' : os.getenv('GROUPME_BOT_ID'),
           'text'   : msg,
          }
-  request = requests.post(url, json = json.dumps(data))
+  requests.post(url, json = json.dumps(data))
   #json = urlopen(request).read().decode()
 
 @app.route('/', methods=['POST'])

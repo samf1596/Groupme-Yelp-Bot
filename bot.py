@@ -31,6 +31,7 @@ def get_rec(msg, data):
 def hook():
     data = request.get_json()
     # We don't want to reply to ourselves!
+    print(data)
     recs = get_rec(data["text"], data)
     print(recs["businesses"])
     if data['name'] != 'Yelp':

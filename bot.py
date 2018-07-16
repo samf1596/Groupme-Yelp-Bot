@@ -35,7 +35,7 @@ def hook():
     #recs = get_rec(data["text"], data)
     #print(recs["businesses"])
 
-    if data['name'] != 'Yelp' and ("hello" or "hi" or "yo") in data['text'].lower():
+    if data['name'] != 'Yelp' and ("hello" in data['text'].lower() or "hi" in data['text'].lower() or "yo" in data['text'].lower()):
         msg = "Hello, " + data['name'] + ". What would you like to search for? Food? Activities?"
         send_message(msg)
 

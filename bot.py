@@ -45,6 +45,7 @@ def hook():
 
     if data['name'] != 'Yelp' and ("food" in data['text'].lower()):
         send_message("Where would like like to search for food? (city/zip/state/combo)")
+        bot == True
         while bot==True:
             res = get_message()
             location = res["messages"][0]["text"]

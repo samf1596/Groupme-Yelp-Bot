@@ -12,20 +12,24 @@ def send_message(msg):
 
   data = {
           'bot_id' : os.getenv('GROUPME_BOT_ID'),
-          'text'   : msg,
+          'text'   : str(msg),
          }
   requests.post(url, data = data)
   #json = urlopen(request).read().decode()
 
-def get_rec(msg, data):
+def get_rec(term=None, location=None, data=None):
     header = {"Authorizaion": "Bearer "+ os.getenv("YELP_KEY")}
     params = {
-        "term":"food",
-        "latitude": data["lat"],
-        "longitude": data["lng"]
+        "term":term,
+        "location":location
     }
     return requests.get(url='https://api.yelp.com/v3/businesses/search', params=params, header=header)
 
+def get_message():
+    params = {
+        "limit":1,
+    }
+    return requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)["messages"][0]
 
 @app.route('/', methods=['POST'])
 def hook():
@@ -38,5 +42,11 @@ def hook():
     if data['name'] != 'Yelp' and ("hello" in data['text'].lower() or "hi" in data['text'].lower() or "yo" in data['text'].lower()):
         msg = "Hello, " + data['name'] + ". What would you like to search for? Food? Activities?"
         send_message(msg)
+
+    if data['name'] != 'Yelp' and ("food" in data['text'].lower()):
+        send_message("Where would like like to search for food? (city/zip/state/combo)")
+        rec = get_rec(term="food", location=get_message())
+        for i in rec['businesses']:
+            send_message(i)
 
     return "ok", 200

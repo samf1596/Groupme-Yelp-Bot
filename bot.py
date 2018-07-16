@@ -31,11 +31,12 @@ def get_rec(msg, data):
 def hook():
     data = request.get_json()
     # We don't want to reply to ourselves!
-    print(data)
-    recs = get_rec(data["text"], data)
-    print(recs["businesses"])
-    if data['name'] != 'Yelp':
-        msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+    #print(data)
+    #recs = get_rec(data["text"], data)
+    #print(recs["businesses"])
+
+    if data['name'] != 'Yelp' and ("hello" or "hi" or "yo") in data['text'].lower():
+        msg = "Hello, " + data['name'] + ". What would you like to search for? Food? Activities?"
         send_message(msg)
 
     return "ok", 200

@@ -48,10 +48,13 @@ def hook():
         while bot==True:
             res = get_message()
             location = res["messages"][0]["text"]
+            print(res)
+            print("in loop")
             if res["messages"][0]["name"] != "Yelp":
                 bot = False
 
         rec = get_rec(term="food", location=location)
+        print(rec)
         for i in rec['businesses']:
             send_message(i)
 

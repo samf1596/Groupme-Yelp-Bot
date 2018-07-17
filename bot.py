@@ -53,9 +53,9 @@ def hook():
         print("in food")
         while bot==True:
             res = get_message().json()
-            location = res["messages"][0]["text"]
+            location = res["response"]["messages"][0]["text"]
             print("in loop")
-            if res["messages"][0]["name"] != "Yelp":
+            if res["response"]["messages"][0]["name"] != "Yelp":
                 bot = False
 
         rec = get_rec(term="food", location=location).json()

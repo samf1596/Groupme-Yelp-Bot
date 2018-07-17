@@ -30,7 +30,7 @@ def get_message():
         "limit":1,
     }
     res = requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)
-    print(res)
+    print(res.json())
     return res
 
 @app.route('/', methods=['POST'])
@@ -53,7 +53,6 @@ def hook():
         while bot==True:
             res = get_message().json()
             location = res["messages"][0]["text"]
-            print(res.json())
             print("in loop")
             if res["messages"][0]["name"] != "Yelp":
                 bot = False

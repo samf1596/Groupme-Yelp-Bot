@@ -29,7 +29,7 @@ def get_message():
     params = {
         "limit":1,
     }
-    return requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)["messages"][0]
+    return requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)
 
 @app.route('/', methods=['POST'])
 def hook():
@@ -47,14 +47,14 @@ def hook():
         send_message("Where would like like to search for food? (city/zip/state/combo)")
         bot = True
         while bot==True:
-            res = get_message().get_json()
+            res = get_message().json()
             location = res["messages"][0]["text"]
             print(res)
             print("in loop")
             if res["messages"][0]["name"] != "Yelp":
                 bot = False
 
-        rec = get_rec(term="food", location=location).get_json()
+        rec = get_rec(term="food", location=location).json()
         print(rec)
         for i in rec['businesses']:
             send_message(i)

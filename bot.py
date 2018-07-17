@@ -47,14 +47,14 @@ def hook():
         send_message("Where would like like to search for food? (city/zip/state/combo)")
         bot = True
         while bot==True:
-            res = get_message()
+            res = get_message().get_json()
             location = res["messages"][0]["text"]
             print(res)
             print("in loop")
             if res["messages"][0]["name"] != "Yelp":
                 bot = False
 
-        rec = get_rec(term="food", location=location)
+        rec = get_rec(term="food", location=location).get_json()
         print(rec)
         for i in rec['businesses']:
             send_message(i)

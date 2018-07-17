@@ -60,9 +60,11 @@ def hook():
 
         rec = get_rec(term="food", location=location).json()
         print(rec)
+        count = 0
         for i in rec['businesses']:
-            send_message("Name: " + str(i['name']))
-            send_message("Price: " + str(i['price']))
-            send_message("Phone: " + str(i['phone']))
+            send_message("\nName: " + str(i['name']) + "\nPrice: " + str(i['price']) + "\nPhone: " + str(i['phone']) + "\n")
+            count = count + 1
+            if count >= 5:
+                break
 
     return "ok", 200

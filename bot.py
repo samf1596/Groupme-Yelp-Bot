@@ -53,7 +53,7 @@ def hook():
         while bot==True:
             res = get_message().json()
             location = res["messages"][0]["text"]
-            print(res)
+            print(res.json())
             print("in loop")
             if res["messages"][0]["name"] != "Yelp":
                 bot = False

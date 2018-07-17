@@ -29,7 +29,9 @@ def get_message():
     params = {
         "limit":1,
     }
-    return requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)
+    res = requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)
+    print(res)
+    return res
 
 @app.route('/', methods=['POST'])
 def hook():
@@ -46,6 +48,7 @@ def hook():
     if data['name'] != 'Yelp' and ("food" in data['text'].lower()):
         send_message("Where would like like to search for food? (city/zip/state/combo)")
         bot = True
+        print("in food")
         while bot==True:
             res = get_message().json()
             location = res["messages"][0]["text"]

@@ -23,7 +23,7 @@ def get_rec(term=None, location=None, data=None):
         "term":term,
         "location":location
     }
-    return requests.get(url='https://api.yelp.com/v3/businesses/search', params=params, header=header)
+    return requests.get(url='https://api.yelp.com/v3/businesses/search', params=params, headers=header)
 
 def get_message():
     params = {

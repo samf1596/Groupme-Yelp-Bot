@@ -18,7 +18,7 @@ def send_message(msg):
   #json = urlopen(request).read().decode()
 
 def get_rec(term=None, location=None, data=None):
-    header = {"Authorizaion": "Bearer "+ os.getenv("YELP_KEY")}
+    header = {"Authorization": "Bearer "+ os.getenv("YELP_KEY")}
     params = {
         "term":term,
         "location":location

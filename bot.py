@@ -28,6 +28,7 @@ def get_rec(term=None, location=None, data=None):
 def get_message():
     params = {
         "limit":1,
+        "token":os.getenv('GROUPME_TOKEN'),
     }
     res = requests.get(url='https://api.groupme.com/v3/groups/42030640/messages', params=params)
     print(res.json())

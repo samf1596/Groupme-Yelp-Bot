@@ -61,6 +61,8 @@ def hook():
         rec = get_rec(term="food", location=location).json()
         print(rec)
         for i in rec['businesses']:
-            send_message(i)
+            send_message("Name: " + str(i['name']))
+            send_message("Price: " + str(i['price']))
+            send_message("Phone: " + str(i['phone']))
 
     return "ok", 200

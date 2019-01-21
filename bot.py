@@ -15,7 +15,6 @@ def send_message(msg):
           'text'   : str(msg),
          }
   requests.post(url, data = data)
-  #json = urlopen(request).read().decode()
 
 def get_rec(term=None, location=None, data=None):
     header = {"Authorization": "Bearer "+ os.getenv("YELP_KEY")}
@@ -37,10 +36,6 @@ def get_message():
 @app.route('/', methods=['POST'])
 def hook():
     data = request.get_json()
-    # We don't want to reply to ourselves!
-    #print(data)
-    #recs = get_rec(data["text"], data)
-    #print(recs["businesses"])
 
     if data['name'] != 'Yelp' and ("hello" in data['text'].lower() or "hi" in data['text'].lower() or "yo" in data['text'].lower()):
         msg = "Hello, " + data['name'] + ". What would you like to search for? Food? Activities?"
